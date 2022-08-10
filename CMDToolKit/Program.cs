@@ -1,4 +1,5 @@
 ﻿using CMDToolKit.Enums;
+using CMDToolKit.Utilities.ClipboardTool;
 using CMDToolKit.Utilities.CustomConsole;
 using CMDToolKit.Utilities.Invoker;
 using CMDToolKit.Utilities.Network;
@@ -7,8 +8,6 @@ var _DNSTool = new DNSTool();
 var _IPTool = new IPTool();
 
 int _ThreadSleep = 1000;
-
-string _Result;
 
 while (true)
 {
@@ -20,7 +19,7 @@ while (true)
 
         if (input.EndsWith("/t"))
         {
-            Console.WriteLine("Press ESC to stop");
+            Printer.PrintInfo("Press Q to stop");
             do
             {
                 while (!Console.KeyAvailable)
@@ -28,7 +27,7 @@ while (true)
                     ProcessInput(input);
                     Thread.Sleep(_ThreadSleep);
                 }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            } while (Console.ReadKey(true).Key != ConsoleKey.Q);
             Printer.PrintWarning("Canceled by user");
         }
         else
@@ -46,47 +45,84 @@ void ProcessInput(string input)
 {
     input = input.Trim();
 
-    var splitedInput = input.Split(' ');
+    var splitedInput = input.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
 
     if (splitedInput.Length > 0)
     {
-        if (!Enum.TryParse(splitedInput[0].ToUpper(), true, out CommandsEnum command))
+        if (!Enum.TryParse(splitedInput[0].ToUpper(), true, out MasterCommandsEnum masterCommand))
             Printer.PrintWarning("Command Not Found!");
 
-        if (command == CommandsEnum.Clear)
+        switch (masterCommand)
         {
-            _Result = String.Empty;
-            Printer.Clear();
-            return;
-        }
+            case MasterCommandsEnum.Clear:
+                ClipboardTool.Clear();
+                Printer.Clear();
+                break;
+            case MasterCommandsEnum.Copy:
+                ClipboardTool.AddResultToClipboard();
+                break;
+            case MasterCommandsEnum.Help:
+                HelpProcess(splitedInput);
 
-        if (splitedInput.Length > 1)
-        {
-            string commandInput = splitedInput[1];
+                break;
+            case MasterCommandsEnum.Network:
+                if (splitedInput.Length > 2)
+                {
+                    if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out CommandsEnum command))
+                        Printer.PrintWarning("Command Not Found!");
 
-            switch (command)
-            {
-                case CommandsEnum.DNSLookUp:
-                    Invoker.InvokeToolsTask(_DNSTool.DNSLookup(commandInput));
-                    break;
+                    string commandInput = splitedInput[2];
 
-                case CommandsEnum.ReverseLookUp:
-                    Invoker.InvokeToolsTask(_DNSTool.ReverseLookup(commandInput));
-                    break;
+                    switch (command)
+                    {
+                        case CommandsEnum.DNSLookUp:
+                            Invoker.InvokeToolsTask(_DNSTool.DNSLookup(commandInput));
+                            break;
 
-                case CommandsEnum.Ping:
-                    Invoker.InvokeToolsTask(_IPTool.HostOrIPHavePing(commandInput));
-                    break;
+                        case CommandsEnum.ReverseLookUp:
+                            Invoker.InvokeToolsTask(_DNSTool.ReverseLookup(commandInput));
+                            break;
 
-                case CommandsEnum.Port:
-                    Invoker.InvokeToolsTask(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
-                    break;
+                        case CommandsEnum.Ping:
+                            Invoker.InvokeToolsTask(_IPTool.HostOrIPHavePing(commandInput));
+                            break;
 
-            }
+                        case CommandsEnum.Port:
+                            Invoker.InvokeToolsTask(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
+                            break;
+                    }
+                }
+                break;
+
+
         }
     }
     else
     {
         Printer.PrintWarning("Command Not Found!");
     }
+}
+
+void HelpProcess(string[] splitedInput)
+{
+    if (splitedInput.Length == 1)
+    {
+        Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (MasterCommandsEnum[])Enum.GetValues(typeof(MasterCommandsEnum))));
+        Printer.PrintInfo("Example : Network");
+    }
+    else if (splitedInput.Length == 2)
+    {
+        if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out MasterCommandsEnum command))
+            Printer.PrintWarning("help not found!");
+
+        switch (command)
+        {
+            case MasterCommandsEnum.Network:
+                Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (CommandsEnum[])Enum.GetValues(typeof(CommandsEnum))));
+                Printer.PrintInfo("Example : network ping google.com");
+                break;
+
+        }
+    }
+
 }

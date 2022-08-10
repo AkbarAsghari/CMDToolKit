@@ -10,16 +10,13 @@ namespace CMDToolKit.Utilities.Invoker
 {
     internal class Invoker
     {
-        public static async void InvokeToolsTask(params Task<ToolResult>[] tasks)
+        public static async void InvokeToolsTask(Task<ToolResult> task)
         {
             ToolResult toolResult = null;
             var watch = System.Diagnostics.Stopwatch.StartNew();
             try
             {
-                foreach (var task in tasks)
-                {
-                    toolResult = await task;
-                }
+                toolResult = await task;
             }
             catch (Exception ex)
             {
@@ -32,6 +29,7 @@ namespace CMDToolKit.Utilities.Invoker
             {
                 if (toolResult.IsSuccess == true)
                 {
+                    ClipboardTool.ClipboardTool.SetResult(toolResult.Message);
                     Printer.PrintSuccess($"{toolResult.Message} (time: {elapsedMs} ms)");
                 }
                 else if (toolResult.IsSuccess == false)
@@ -39,7 +37,7 @@ namespace CMDToolKit.Utilities.Invoker
                 else
                     Printer.PrintWarning($"{toolResult.Message} (time: {elapsedMs} ms)");
             }
-            
+
         }
     }
 }

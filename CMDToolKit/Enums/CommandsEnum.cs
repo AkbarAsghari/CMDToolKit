@@ -8,7 +8,6 @@ namespace CMDToolKit.Enums
 {
     internal enum CommandsEnum
     {
-        Clear = 0,
         DNSLookUp = 1,
         Ping = 2,
         Port = 3,

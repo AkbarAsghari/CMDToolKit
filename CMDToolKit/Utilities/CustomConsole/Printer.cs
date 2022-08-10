@@ -18,6 +18,13 @@ namespace CMDToolKit.Utilities.CustomConsole
 
         public static void GoNextLine() => Console.WriteLine();
 
+        internal static void PrintInfo(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(text);
+            Reset();
+        }
+
         public static void PrintError(string text)
         {
             Console.ForegroundColor = ConsoleColor.Red;
