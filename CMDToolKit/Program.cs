@@ -9,6 +9,8 @@ var _IPTool = new IPTool();
 
 int _ThreadSleep = 1000;
 
+Printer.PrintInfo("Welcome to CMDToolKit . for information type 'help'");
+
 while (true)
 {
     try
@@ -92,6 +94,8 @@ void ProcessInput(string input)
                             break;
                     }
                 }
+                else
+                    Printer.PrintInfo("wrong command ,please type 'help network'");
                 break;
 
 
