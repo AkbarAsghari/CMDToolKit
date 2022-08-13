@@ -14,26 +14,31 @@ namespace CMDToolKit.Providers.EncodersDecoders
 {
     internal class EncodersDecodersProvider : IProvider
     {
-        private readonly string[] _splitedInput;
+        private readonly string?[] _splitedInput;
 
         public EncodersDecodersProvider(string input)
         {
-            _splitedInput = input.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
-
+            _splitedInput = new string[3];
+            var commands = input.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).Take(2).ToArray();
+            Array.Copy(commands, _splitedInput, 2);
+            if (true)
+            {
+                _splitedInput[2] = input.Split(commands[1] + " ")[1];
+            }
         }
         public void Help()
         {
-            if (_splitedInput.Length == 2)
+            if (_splitedInput.Where(x => x != null).ToArray().Length == 2)
             {
                 Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (EncodersDecodersEnums[])Enum.GetValues(typeof(EncodersDecodersEnums))));
                 Printer.PrintInfo("Example : encode base64 Hello World");
                 return;
             }
 
-            if (!Enum.TryParse(_splitedInput[1].ToUpper(), true, out MasterCommandsEnum masterCommand))
+            if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out MasterCommandsEnum masterCommand))
                 Printer.PrintWarning("Command Not Found!");
 
-            if (!Enum.TryParse(_splitedInput[2].ToUpper(), true, out EncodersDecodersEnums command))
+            if (!Enum.TryParse(_splitedInput[2]!.ToUpper(), true, out EncodersDecodersEnums command))
                 Printer.PrintWarning("Command Not Found!");
 
             switch (masterCommand, command)
@@ -54,19 +59,19 @@ namespace CMDToolKit.Providers.EncodersDecoders
 
         public void Process()
         {
-            if (_splitedInput.Length < 3)
+            if (_splitedInput.Where(x => x != null).ToArray().Length < 3)
             {
                 Printer.PrintInfo("wrong command ,please type 'help encode'");
                 return;
             }
 
-            if (!Enum.TryParse(_splitedInput[0].ToUpper(), true, out MasterCommandsEnum masterCommand))
+            if (!Enum.TryParse(_splitedInput[0]!.ToUpper(), true, out MasterCommandsEnum masterCommand))
                 Printer.PrintWarning("Command Not Found!");
 
-            if (!Enum.TryParse(_splitedInput[1].ToUpper(), true, out EncodersDecodersEnums command))
+            if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out EncodersDecodersEnums command))
                 Printer.PrintWarning("Command Not Found!");
 
-            string commandInput = String.Join(String.Empty, _splitedInput.Skip(2));
+            string commandInput = _splitedInput[2]!;
 
             switch (masterCommand, command)
             {
