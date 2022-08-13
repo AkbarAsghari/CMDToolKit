@@ -56,7 +56,10 @@ void ProcessInput(string input)
     if (splitedInput.Length > 0)
     {
         if (!Enum.TryParse(splitedInput[0].ToUpper(), true, out MasterCommandsEnum masterCommand))
+        {
             Printer.PrintWarning("Command Not Found!");
+            return;
+        }
 
         switch (masterCommand)
         {
