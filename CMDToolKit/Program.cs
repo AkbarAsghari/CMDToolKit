@@ -62,10 +62,10 @@ void ProcessInput(string input)
                 break;
             case MasterCommandsEnum.Copy:
                 ClipboardTool.AddResultToClipboard();
+                Printer.PrintSuccess("Result Copied");
                 break;
             case MasterCommandsEnum.Help:
                 HelpProcess(splitedInput);
-
                 break;
             case MasterCommandsEnum.Network:
                 if (splitedInput.Length > 2)
@@ -126,6 +126,39 @@ void HelpProcess(string[] splitedInput)
                 Printer.PrintInfo("Example : network ping google.com");
                 break;
 
+        }
+    }
+    else if (splitedInput.Length == 3)
+    {
+        if (!Enum.TryParse(splitedInput[2].ToUpper(), true, out CommandsEnum command))
+            Printer.PrintWarning("help not found!");
+
+        switch (command)
+        {
+            case CommandsEnum.Port:
+                Printer.PrintInfo("Command -> network port {host name or Ip address}:{port}");
+                Printer.PrintInfo("Examples : ");
+                Printer.PrintInfo("network port example.com");
+                Printer.PrintInfo("network port example.com:8080");
+                Printer.PrintInfo("network port 8.8.8.8");
+                Printer.PrintInfo("network port 8.8.8.8:80");
+                break;
+            case CommandsEnum.Ping:
+                Printer.PrintInfo("command -> network ping {host name or Ip address}");
+                Printer.PrintInfo("Examples : ");
+                Printer.PrintInfo("network port example.com");
+                Printer.PrintInfo("network port 8.8.8.8");
+                break;
+            case CommandsEnum.DNSLookUp:
+                Printer.PrintInfo("command -> network dnslookup {host name}");
+                Printer.PrintInfo("Examples : ");
+                Printer.PrintInfo("network port example.com");
+                break;
+            case CommandsEnum.ReverseLookUp:
+                Printer.PrintInfo("command -> network ReverseLookUp {IP}");
+                Printer.PrintInfo("Examples : ");
+                Printer.PrintInfo("network port 8.8.8.8");
+                break;
         }
     }
 
