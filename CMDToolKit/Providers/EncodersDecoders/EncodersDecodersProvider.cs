@@ -20,10 +20,14 @@ namespace CMDToolKit.Providers.EncodersDecoders
         {
             _splitedInput = new string[3];
             var commands = input.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).Take(2).ToArray();
-            Array.Copy(commands, _splitedInput, 2);
-            if (true)
+            Array.Copy(commands, _splitedInput, commands.Length > 2 ? 2 : commands.Length);
+            if (commands.Length > 1)
             {
-                _splitedInput[2] = input.Split(commands[1] + " ")[1];
+                string[] splitedCommandAndInput = input.Split(commands[1] + " ");
+                if (splitedCommandAndInput.Length > 1)
+                {
+                    _splitedInput[2] = splitedCommandAndInput[1];
+                }
             }
         }
         public void Help()
@@ -59,7 +63,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
 
         public void Process()
         {
-            if (_splitedInput.Where(x => x != null).ToArray().Length < 3)
+            if (_splitedInput.Where(x => x != null).ToArray().Length < 2)
             {
                 Printer.PrintInfo("wrong command ,please type 'help encode'");
                 return;

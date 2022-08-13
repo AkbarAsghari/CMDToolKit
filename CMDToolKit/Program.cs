@@ -49,7 +49,7 @@ while (true)
 
 void ProcessInput(string input)
 {
-    input = input.Trim();
+    input = input.TrimStart();
 
     var splitedInput = input.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
 
