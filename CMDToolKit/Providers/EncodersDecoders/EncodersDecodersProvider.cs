@@ -46,6 +46,9 @@ namespace CMDToolKit.Providers.EncodersDecoders
                     Printer.PrintInfo("Command -> decode base64 [base64EncodedData]");
                     Printer.PrintInfo("Example : encode base64 SGVsbG9Xb3JsZA==");
                     break;
+                default:
+                    Printer.PrintError($"Help Not Found For {masterCommand} {command}");
+                    break;
             }
         }
 

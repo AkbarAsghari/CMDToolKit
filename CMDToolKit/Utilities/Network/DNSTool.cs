@@ -12,6 +12,14 @@ namespace CMDToolKit.Utilities.Network
     {
         public async Task<ToolResult> DNSLookup(string hostOrIPAddress)
         {
+            if (String.IsNullOrWhiteSpace(hostOrIPAddress))
+            {
+                return new ToolResult
+                {
+                    Message = "Host or IP address cannot be empty ,please type 'help network dnslookup'"
+                };
+            }
+
             try
             {
                 var hostAddresses = await Dns.GetHostAddressesAsync(hostOrIPAddress);
@@ -28,6 +36,14 @@ namespace CMDToolKit.Utilities.Network
 
         public async Task<ToolResult> ReverseLookup(string iPAddress)
         {
+            if (String.IsNullOrWhiteSpace(iPAddress))
+            {
+                return new ToolResult
+                {
+                    Message = "IP address cannot be empty ,please type 'help network reverselookup'"
+                };
+            }
+
             try
             {
                 IPHostEntry entry = await Dns.GetHostEntryAsync(iPAddress);

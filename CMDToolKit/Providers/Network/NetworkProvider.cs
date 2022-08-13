@@ -58,30 +58,27 @@ namespace CMDToolKit.Providers.Network
                     break;
                 case NetworkEnum.DNSLookUp:
                     Printer.PrintInfo("command -> network dnslookup {host name}");
-                    Printer.PrintInfo("Examples : ");
-                    Printer.PrintInfo("network port example.com");
+                    Printer.PrintInfo("Example : network port example.com");
                     break;
                 case NetworkEnum.ReverseLookUp:
                     Printer.PrintInfo("command -> network ReverseLookUp {IP}");
-                    Printer.PrintInfo("Examples : ");
-                    Printer.PrintInfo("network port 8.8.8.8");
+                    Printer.PrintInfo("Example : network port 8.8.8.8");
+                    break;
+                case NetworkEnum.Mac:
+                    Printer.PrintInfo("command -> network mac");
+                    break;
+                default:
+                    Printer.PrintError($"Help Not Found For {command}");
                     break;
             }
         }
 
         public void Process()
         {
-
-            if (_splitedInput.Length < 3)
-            {
-                Printer.PrintInfo("wrong command ,please type 'help network'");
-                return;
-            }
-
             if (!Enum.TryParse(_splitedInput[1].ToUpper(), true, out NetworkEnum command))
                 Printer.PrintWarning("Command Not Found!");
 
-            string commandInput = _splitedInput[2];
+            string commandInput = _splitedInput.Length > 2 ? _splitedInput[2] : String.Empty;
 
             switch (command)
             {
@@ -99,6 +96,9 @@ namespace CMDToolKit.Providers.Network
 
                 case NetworkEnum.Port:
                     Invoker.InvokeToolsAsync(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
+                    break;
+                case NetworkEnum.Mac:
+                    Invoker.InvokeTools(() => LocalNetwork.GetMac());
                     break;
             }
         }

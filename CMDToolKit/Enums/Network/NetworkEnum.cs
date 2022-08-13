@@ -12,5 +12,6 @@ namespace CMDToolKit.Enums.Network
         Ping = 2,
         Port = 3,
         ReverseLookUp = 4,
+        Mac = 5,
     }
 }

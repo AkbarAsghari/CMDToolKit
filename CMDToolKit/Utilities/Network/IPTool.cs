@@ -13,6 +13,14 @@ namespace CMDToolKit.Utilities.Network
     {
         public async Task<ToolResult> HostOrIPHavePing(string hostOrIPAddress)
         {
+            if (String.IsNullOrWhiteSpace(hostOrIPAddress))
+            {
+                return new ToolResult
+                {
+                    Message = "Host or IP address cannot be empty ,please type 'help network ping'"
+                };
+            }
+
             bool pingable = false;
             Ping pinger = null;
 
@@ -39,6 +47,14 @@ namespace CMDToolKit.Utilities.Network
 
         public async Task<ToolResult> IsHHostOrIPAndPortOpen(string address)
         {
+            if (String.IsNullOrWhiteSpace(address))
+            {
+                return new ToolResult
+                {
+                    Message = "Address cannot be empty ,please type 'help network port'"
+                };
+            }
+
             var splitedAddress = address.Split(':');
             if (splitedAddress.Length < 1)
                 return new ToolResult { Message = "Fomat is wrong {IP}:{Port}" };
