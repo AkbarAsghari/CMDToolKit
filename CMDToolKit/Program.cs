@@ -1,6 +1,7 @@
 ﻿using CMDToolKit.Enums;
 using CMDToolKit.Enums.EncodersDecoders;
 using CMDToolKit.Enums.Network;
+using CMDToolKit.Providers.EncodersDecoders;
 using CMDToolKit.Providers.Network;
 using CMDToolKit.Utilities.ClipboardTool;
 using CMDToolKit.Utilities.CustomConsole;
@@ -83,6 +84,10 @@ void ProcessInput(string input)
                     case MasterCommandsEnum.Network:
                         new NetworkProvider(input).Help();
                         break;
+                    case MasterCommandsEnum.Encode:
+                    case MasterCommandsEnum.Decode:
+                        new EncodersDecodersProvider(input).Help();
+                        break;
                 };
                 break;
             case MasterCommandsEnum.Network:
@@ -90,38 +95,12 @@ void ProcessInput(string input)
                 break;
             case MasterCommandsEnum.Encode:
             case MasterCommandsEnum.Decode:
-                EncodersDecodersProcess(splitedInput);
+                new EncodersDecodersProvider(input).Process();
                 break;
         }
     }
     else
     {
         Printer.PrintWarning("Command Not Found!");
-    }
-}
-
-void EncodersDecodersProcess(string[] splitedInput)
-{
-    if (splitedInput.Length < 3)
-    {
-        Printer.PrintInfo("wrong command ,please type 'help encode'");
-        return;
-    }
-    if (!Enum.TryParse(splitedInput[0].ToUpper(), true, out MasterCommandsEnum masterCommand))
-        Printer.PrintWarning("Command Not Found!");
-
-    if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out EncodersDecodersEnums command))
-        Printer.PrintWarning("Command Not Found!");
-
-    string commandInput = splitedInput[2];
-
-    switch (masterCommand, command)
-    {
-        case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base64):
-            Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Encode(commandInput));
-            break;
-        case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base64):
-            Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Decode(commandInput));
-            break;
     }
 }
