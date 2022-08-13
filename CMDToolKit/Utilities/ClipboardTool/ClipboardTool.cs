@@ -16,7 +16,6 @@ namespace CMDToolKit.Utilities.ClipboardTool
                 return;
             }
 
-
             OpenClipboard();
 
             EmptyClipboard();

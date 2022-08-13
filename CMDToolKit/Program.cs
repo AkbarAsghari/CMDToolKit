@@ -1,6 +1,9 @@
 ﻿using CMDToolKit.Enums;
+using CMDToolKit.Enums.EncodersDecoders;
+using CMDToolKit.Enums.Network;
 using CMDToolKit.Utilities.ClipboardTool;
 using CMDToolKit.Utilities.CustomConsole;
+using CMDToolKit.Utilities.EncodersDecoders;
 using CMDToolKit.Utilities.Invoker;
 using CMDToolKit.Utilities.Network;
 
@@ -67,42 +70,76 @@ void ProcessInput(string input)
                 HelpProcess(splitedInput);
                 break;
             case MasterCommandsEnum.Network:
-                if (splitedInput.Length > 2)
-                {
-                    if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out CommandsEnum command))
-                        Printer.PrintWarning("Command Not Found!");
-
-                    string commandInput = splitedInput[2];
-
-                    switch (command)
-                    {
-                        case CommandsEnum.DNSLookUp:
-                            Invoker.InvokeToolsTask(_DNSTool.DNSLookup(commandInput));
-                            break;
-
-                        case CommandsEnum.ReverseLookUp:
-                            Invoker.InvokeToolsTask(_DNSTool.ReverseLookup(commandInput));
-                            break;
-
-                        case CommandsEnum.Ping:
-                            Invoker.InvokeToolsTask(_IPTool.HostOrIPHavePing(commandInput));
-                            break;
-
-                        case CommandsEnum.Port:
-                            Invoker.InvokeToolsTask(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
-                            break;
-                    }
-                }
-                else
-                    Printer.PrintInfo("wrong command ,please type 'help network'");
+                NetworkProcess(splitedInput);
                 break;
-
-
+            case MasterCommandsEnum.Encode:
+            case MasterCommandsEnum.Decode:
+                EncodersDecodersProcess(splitedInput);
+                break;
         }
     }
     else
     {
         Printer.PrintWarning("Command Not Found!");
+    }
+}
+
+void EncodersDecodersProcess(string[] splitedInput)
+{
+    if (splitedInput.Length < 3)
+    {
+        Printer.PrintInfo("wrong command ,please type 'help encode'");
+        return;
+    }
+    if (!Enum.TryParse(splitedInput[0].ToUpper(), true, out MasterCommandsEnum masterCommand))
+        Printer.PrintWarning("Command Not Found!");
+
+    if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out EncodersDecodersEnums command))
+        Printer.PrintWarning("Command Not Found!");
+
+    string commandInput = splitedInput[2];
+
+    switch (masterCommand, command)
+    {
+        case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base64):
+            Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Encode(commandInput));
+            break;
+        case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base64):
+            Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Decode(commandInput));
+            break;
+    }
+}
+
+void NetworkProcess(string[] splitedInput)
+{
+    if (splitedInput.Length < 3)
+    {
+        Printer.PrintInfo("wrong command ,please type 'help network'");
+        return;
+    }
+
+    if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out NetworkEnum command))
+        Printer.PrintWarning("Command Not Found!");
+
+    string commandInput = splitedInput[2];
+
+    switch (command)
+    {
+        case NetworkEnum.DNSLookUp:
+            Invoker.InvokeToolsAsync(_DNSTool.DNSLookup(commandInput));
+            break;
+
+        case NetworkEnum.ReverseLookUp:
+            Invoker.InvokeToolsAsync(_DNSTool.ReverseLookup(commandInput));
+            break;
+
+        case NetworkEnum.Ping:
+            Invoker.InvokeToolsAsync(_IPTool.HostOrIPHavePing(commandInput));
+            break;
+
+        case NetworkEnum.Port:
+            Invoker.InvokeToolsAsync(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
+            break;
     }
 }
 
@@ -121,7 +158,7 @@ void HelpProcess(string[] splitedInput)
         switch (command)
         {
             case MasterCommandsEnum.Network:
-                Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (CommandsEnum[])Enum.GetValues(typeof(CommandsEnum))));
+                Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (NetworkEnum[])Enum.GetValues(typeof(NetworkEnum))));
                 Printer.PrintInfo("Example : network ping google.com");
                 break;
 
@@ -129,12 +166,12 @@ void HelpProcess(string[] splitedInput)
     }
     else if (splitedInput.Length == 3)
     {
-        if (!Enum.TryParse(splitedInput[2].ToUpper(), true, out CommandsEnum command))
+        if (!Enum.TryParse(splitedInput[2].ToUpper(), true, out NetworkEnum command))
             Printer.PrintWarning("help not found!");
 
         switch (command)
         {
-            case CommandsEnum.Port:
+            case NetworkEnum.Port:
                 Printer.PrintInfo("Command -> network port {host name or Ip address}:{port}");
                 Printer.PrintInfo("Examples : ");
                 Printer.PrintInfo("network port example.com");
@@ -142,18 +179,18 @@ void HelpProcess(string[] splitedInput)
                 Printer.PrintInfo("network port 8.8.8.8");
                 Printer.PrintInfo("network port 8.8.8.8:80");
                 break;
-            case CommandsEnum.Ping:
+            case NetworkEnum.Ping:
                 Printer.PrintInfo("command -> network ping {host name or Ip address}");
                 Printer.PrintInfo("Examples : ");
                 Printer.PrintInfo("network port example.com");
                 Printer.PrintInfo("network port 8.8.8.8");
                 break;
-            case CommandsEnum.DNSLookUp:
+            case NetworkEnum.DNSLookUp:
                 Printer.PrintInfo("command -> network dnslookup {host name}");
                 Printer.PrintInfo("Examples : ");
                 Printer.PrintInfo("network port example.com");
                 break;
-            case CommandsEnum.ReverseLookUp:
+            case NetworkEnum.ReverseLookUp:
                 Printer.PrintInfo("command -> network ReverseLookUp {IP}");
                 Printer.PrintInfo("Examples : ");
                 Printer.PrintInfo("network port 8.8.8.8");
