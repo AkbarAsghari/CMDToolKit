@@ -62,7 +62,6 @@ void ProcessInput(string input)
                 break;
             case MasterCommandsEnum.Copy:
                 ClipboardTool.AddResultToClipboard();
-                Printer.PrintSuccess("Result Copied");
                 break;
             case MasterCommandsEnum.Help:
                 HelpProcess(splitedInput);

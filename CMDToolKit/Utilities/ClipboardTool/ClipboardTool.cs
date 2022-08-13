@@ -11,7 +11,11 @@ namespace CMDToolKit.Utilities.ClipboardTool
         public static void AddResultToClipboard()
         {
             if (String.IsNullOrWhiteSpace(_result))
+            {
+                Printer.PrintWarning("Nothing found to copy!");
                 return;
+            }
+
 
             OpenClipboard();
 
@@ -59,6 +63,7 @@ namespace CMDToolKit.Utilities.ClipboardTool
 
                 CloseClipboard();
             }
+            Printer.PrintSuccess("Result Copied");
         }
 
         private static void OpenClipboard()
@@ -110,12 +115,12 @@ namespace CMDToolKit.Utilities.ClipboardTool
 
         public static void SetResult(string text)
         {
-            _result = text; 
+            _result = text;
         }
 
         public static void Clear()
         {
-            _result = String.Empty; 
+            _result = String.Empty;
         }
     }
 }
