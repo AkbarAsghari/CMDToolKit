@@ -12,14 +12,18 @@ using CMDToolKit.Utilities.Network;
 
 
 int _ThreadSleep = 1000;
-
-Printer.PrintInfo("Welcome to CMDToolKit . for information type 'help'");
+string input = String.Join(" ", Environment.GetCommandLineArgs().Skip(1));
 
 while (true)
 {
     try
     {
-        var input = Console.ReadLine();
+        if (String.IsNullOrEmpty(input))
+        {
+            input = Console.ReadLine()!;
+            if (input.ToLower().StartsWith("ctk "))
+                input = input.Substring(4);
+        }
         if (String.IsNullOrWhiteSpace(input))
             continue;
 
@@ -42,6 +46,10 @@ while (true)
     catch (Exception ex)
     {
         Printer.PrintError(ex.Message);
+    }
+    finally
+    {
+        input = String.Empty;
     }
 }
 
