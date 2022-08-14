@@ -83,19 +83,19 @@ namespace CMDToolKit.Providers.Network
             switch (command)
             {
                 case NetworkEnum.DNSLookUp:
-                    Invoker.InvokeToolsAsync(_DNSTool.DNSLookup(commandInput));
+                    Invoker.InvokeTools(() => _DNSTool.DNSLookup(commandInput));
                     break;
 
                 case NetworkEnum.ReverseLookUp:
-                    Invoker.InvokeToolsAsync(_DNSTool.ReverseLookup(commandInput));
+                    Invoker.InvokeTools(() => _DNSTool.ReverseLookup(commandInput));
                     break;
 
                 case NetworkEnum.Ping:
-                    Invoker.InvokeToolsAsync(_IPTool.HostOrIPHavePing(commandInput));
+                    Invoker.InvokeTools(() => _IPTool.HostOrIPHavePing(commandInput));
                     break;
 
                 case NetworkEnum.Port:
-                    Invoker.InvokeToolsAsync(_IPTool.IsHHostOrIPAndPortOpen(commandInput));
+                    Invoker.InvokeTools(() => _IPTool.IsHHostOrIPAndPortOpen(commandInput));
                     break;
                 case NetworkEnum.Mac:
                     Invoker.InvokeTools(() => LocalNetwork.GetMac());

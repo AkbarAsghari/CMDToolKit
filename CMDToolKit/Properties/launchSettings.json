@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CTK": {
+      "commandName": "Project",
+      "commandLineArgs": "ctk network ping google.com"
+    }
+  }
+}

@@ -12,20 +12,18 @@ using CMDToolKit.Utilities.Network;
 
 
 int _ThreadSleep = 1000;
-string input = String.Join(" ", Environment.GetCommandLineArgs().Skip(1));
+
+string input = String.Join(" ", Environment.GetCommandLineArgs().Skip(2));
 
 while (true)
 {
     try
     {
-        if (String.IsNullOrEmpty(input))
-        {
-            input = Console.ReadLine()!;
-            if (input.ToLower().StartsWith("ctk "))
-                input = input.Substring(4);
-        }
         if (String.IsNullOrWhiteSpace(input))
-            continue;
+        {
+            Console.Write("ctk>");
+            input = Console.ReadLine()!;
+        }
 
         if (input.EndsWith("/t"))
         {
@@ -47,12 +45,8 @@ while (true)
     {
         Printer.PrintError(ex.Message);
     }
-    finally
-    {
-        input = String.Empty;
-    }
+    input = String.Empty;
 }
-
 
 
 void ProcessInput(string input)

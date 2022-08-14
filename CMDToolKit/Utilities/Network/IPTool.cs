@@ -11,7 +11,7 @@ namespace CMDToolKit.Utilities.Network
 {
     internal class IPTool
     {
-        public async Task<ToolResult> HostOrIPHavePing(string hostOrIPAddress)
+        public ToolResult HostOrIPHavePing(string hostOrIPAddress)
         {
             if (String.IsNullOrWhiteSpace(hostOrIPAddress))
             {
@@ -27,7 +27,7 @@ namespace CMDToolKit.Utilities.Network
             try
             {
                 pinger = new Ping();
-                PingReply reply = await pinger.SendPingAsync(hostOrIPAddress);
+                PingReply reply = pinger.Send(hostOrIPAddress);
                 pingable = reply.Status == IPStatus.Success;
             }
             catch (PingException)
@@ -45,7 +45,7 @@ namespace CMDToolKit.Utilities.Network
             return new ToolResult { IsSuccess = pingable, Message = pingable ? "We have ping" : "We have no ping" };
         }
 
-        public async Task<ToolResult> IsHHostOrIPAndPortOpen(string address)
+        public ToolResult IsHHostOrIPAndPortOpen(string address)
         {
             if (String.IsNullOrWhiteSpace(address))
             {
@@ -64,8 +64,7 @@ namespace CMDToolKit.Utilities.Network
             {
                 using (var client = new TcpClient())
                 {
-                    var ct = new CancellationTokenSource(3000).Token;
-                    await client.ConnectAsync(splitedAddress[0], port, ct);
+                    client.Connect(splitedAddress[0], port);
                     return new ToolResult { IsSuccess = true, Message = $"Port {port} is open" };
                 }
             }
