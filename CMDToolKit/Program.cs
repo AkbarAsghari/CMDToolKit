@@ -73,14 +73,16 @@ void ProcessInput(string input)
             case MasterCommandsEnum.Help:
                 if (splitedInput.Length == 1)
                 {
-                    Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (MasterCommandsEnum[])Enum.GetValues(typeof(MasterCommandsEnum))));
+                    Printer.PrintInfo("Available Commands -> " +
+                        String.Join(" , ", ((MasterCommandsEnum[])Enum.GetValues(typeof(MasterCommandsEnum)))
+                        .Except(new MasterCommandsEnum[] { MasterCommandsEnum.Help, MasterCommandsEnum.Clear })));
                     Printer.PrintInfo("Example : Network");
                     break;
                 }
                 if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out MasterCommandsEnum masterCommandForHelp))
                 {
                     Printer.PrintWarning("help not found!");
-                    break ;
+                    break;
                 }
                 switch (masterCommandForHelp)
                 {
