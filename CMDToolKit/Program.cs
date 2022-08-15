@@ -18,8 +18,10 @@ while (true)
 {
     try
     {
-        Console.Write("ctk> ");
-        string input = TextAutoComplator.ReadInput()!;
+        
+
+        string input = TextAutoComplator.GetValue(); 
+
 
         if (input.EndsWith("/t"))
         {
