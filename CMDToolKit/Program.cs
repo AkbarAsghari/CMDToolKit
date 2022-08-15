@@ -10,6 +10,7 @@ using CMDToolKit.Utilities.EncodersDecoders;
 using CMDToolKit.Utilities.Invoker;
 using CMDToolKit.Utilities.Network;
 using CTK.Enums.Hash;
+using CTK.Utilities.TextAutoComplator;
 
 int _ThreadSleep = 1000;
 
@@ -17,8 +18,8 @@ while (true)
 {
     try
     {
-        Console.Write("ctk>");
-        string input = Console.ReadLine()!;
+        Console.Write("ctk> ");
+        string input = TextAutoComplator.ReadInput()!;
 
         if (input.EndsWith("/t"))
         {
