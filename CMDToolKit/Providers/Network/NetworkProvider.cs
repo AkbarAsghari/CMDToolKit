@@ -67,6 +67,9 @@ namespace CMDToolKit.Providers.Network
                 case NetworkEnum.Mac:
                     Printer.PrintInfo("command -> network mac");
                     break;
+                case NetworkEnum.LocalIP:
+                    Printer.PrintInfo("command -> network localip");
+                    break;
                 default:
                     Printer.PrintError($"Help Not Found For {command}");
                     break;
@@ -88,20 +91,20 @@ namespace CMDToolKit.Providers.Network
                 case NetworkEnum.DNSLookUp:
                     Invoker.InvokeTools(() => _DNSTool.DNSLookup(commandInput));
                     break;
-
                 case NetworkEnum.ReverseLookUp:
                     Invoker.InvokeTools(() => _DNSTool.ReverseLookup(commandInput));
                     break;
-
                 case NetworkEnum.Ping:
                     Invoker.InvokeTools(() => _IPTool.HostOrIPHavePing(commandInput));
                     break;
-
                 case NetworkEnum.Port:
                     Invoker.InvokeTools(() => _IPTool.IsHHostOrIPAndPortOpen(commandInput));
                     break;
                 case NetworkEnum.Mac:
                     Invoker.InvokeTools(() => LocalNetwork.GetMac());
+                    break;
+                case NetworkEnum.LocalIP:
+                    Invoker.InvokeTools(() => LocalNetwork.GetLocalIPAddress());
                     break;
             }
         }
