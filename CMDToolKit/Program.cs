@@ -11,6 +11,8 @@ using Tools.Utilities.TextAutoComplator;
 
 int _ThreadSleep = 1000;
 
+Printer.PrintInfo("Welcome to ctk , for see commands just type 'Help'");
+
 while (true)
 {
     try
