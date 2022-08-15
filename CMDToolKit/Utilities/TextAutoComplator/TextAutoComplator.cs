@@ -67,7 +67,7 @@ namespace CTK.Utilities.TextAutoComplator
                     case ConsoleKey.Tab:
                         var autoCompletedLine = cyclingAutoComplete.AutoComplete(
                     result.LineBeforeKeyPress.LineBeforeCursor, data);
-                        ConsoleExt.SetLine(autoCompletedLine);
+                        ConsoleExt.SetLine(autoCompletedLine + result.LineBeforeKeyPress.LineAfterCursor);
                         break;
                 }
             }
