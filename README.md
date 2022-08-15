@@ -1,10 +1,13 @@
 
+
 # CMDToolKit
 
 Command Tool Kit (CTK)
 
 free open source command line tools for command lovers ❤️
 
+## Pre Required
+only .Net 6 SDK
 ## Installation
 just clone project and build
 copy bin/.net6 files from project to specific path 
