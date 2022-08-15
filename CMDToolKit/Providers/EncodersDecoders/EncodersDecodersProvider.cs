@@ -61,6 +61,14 @@ namespace CMDToolKit.Providers.EncodersDecoders
                     Printer.PrintInfo("Command -> decode base64 [base64EncodedData]");
                     Printer.PrintInfo("Example : encode base64 SGVsbG9Xb3JsZA==");
                     break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base32):
+                    Printer.PrintInfo("Command -> encode base32 [plainText]");
+                    Printer.PrintInfo("Example : encode base32 Hello World");
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base32):
+                    Printer.PrintInfo("Command -> decode base32 [base32EncodedData]");
+                    Printer.PrintInfo("Example : encode base32 JBSWY3DPEBLW64TMMQ======");
+                    break;
                 default:
                     Printer.PrintError($"Help Not Found For {masterCommand} {command}");
                     break;
