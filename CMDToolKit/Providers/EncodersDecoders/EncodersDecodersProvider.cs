@@ -65,7 +65,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
         {
             if (_splitedInput.Where(x => x != null).ToArray().Length < 2)
             {
-                Printer.PrintInfo("wrong command ,please type 'help encode'");
+                Printer.PrintInfo("wrong command ,please type 'help encode/decode'");
                 return;
             }
 
