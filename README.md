@@ -1,6 +1,17 @@
+
 # CMDToolKit
 
-All Available Commands
+Command Tool Kit (CTK)
+
+free open source command line tools for command lovers ❤️
+
+## Installation
+just clone project and build
+copy bin/.net6 files from project to specific path 
+add path to System Environment 
+open cmd and type **ctk**
+
+## All Available Commands
 
 ```
 
