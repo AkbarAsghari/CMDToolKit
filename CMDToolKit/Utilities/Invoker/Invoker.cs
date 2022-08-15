@@ -30,13 +30,14 @@ namespace CMDToolKit.Utilities.Invoker
                 if (toolResult.IsSuccess == true)
                 {
                     ClipboardTool.ClipboardTool.SetResult(toolResult.Message);
-                    Printer.PrintSuccess($"{toolResult.Message} (time: {elapsedMs} ms)");
+                    Printer.PrintSuccess($"{toolResult.Message}");
                 }
                 else if (toolResult.IsSuccess == false)
-                    Printer.PrintError($"{toolResult.Message} (time: {elapsedMs} ms)");
+                    Printer.PrintError($"{toolResult.Message}");
                 else
-                    Printer.PrintWarning($"{toolResult.Message} (time: {elapsedMs} ms)");
+                    Printer.PrintWarning($"{toolResult.Message}");
             }
+            Printer.PrintInfo($"---> time: {elapsedMs} ms");
         }
     }
 }
