@@ -40,10 +40,16 @@ namespace CMDToolKit.Providers.EncodersDecoders
             }
 
             if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out MasterCommandsEnum masterCommand))
+            {
                 Printer.PrintWarning("Command Not Found!");
+                return;
+            }
 
             if (!Enum.TryParse(_splitedInput[2]!.ToUpper(), true, out EncodersDecodersEnums command))
+            {
                 Printer.PrintWarning("Command Not Found!");
+                return;
+            }
 
             switch (masterCommand, command)
             {
@@ -70,10 +76,16 @@ namespace CMDToolKit.Providers.EncodersDecoders
             }
 
             if (!Enum.TryParse(_splitedInput[0]!.ToUpper(), true, out MasterCommandsEnum masterCommand))
+            {
                 Printer.PrintWarning("Command Not Found!");
+                return;
+            }
 
             if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out EncodersDecodersEnums command))
+            {
                 Printer.PrintWarning("Command Not Found!");
+                return;
+            }
 
             string commandInput = _splitedInput[2]!;
 

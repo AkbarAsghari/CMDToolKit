@@ -2,6 +2,7 @@
 using CMDToolKit.Enums.EncodersDecoders;
 using CMDToolKit.Enums.Network;
 using CMDToolKit.Providers.EncodersDecoders;
+using CMDToolKit.Providers.Hash;
 using CMDToolKit.Providers.Network;
 using CMDToolKit.Utilities.ClipboardTool;
 using CMDToolKit.Utilities.CustomConsole;
@@ -89,6 +90,9 @@ void ProcessInput(string input)
                     case MasterCommandsEnum.Decode:
                         new EncodersDecodersProvider(input).Help();
                         break;
+                    case MasterCommandsEnum.Hash:
+                        new HashProvider(input).Help();
+                        break;
                 };
                 break;
             case MasterCommandsEnum.Network:
@@ -97,6 +101,9 @@ void ProcessInput(string input)
             case MasterCommandsEnum.Encode:
             case MasterCommandsEnum.Decode:
                 new EncodersDecodersProvider(input).Process();
+                break;
+            case MasterCommandsEnum.Hash:
+                new HashProvider(input).Process();
                 break;
         }
     }

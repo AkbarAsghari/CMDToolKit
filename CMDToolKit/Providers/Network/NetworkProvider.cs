@@ -76,7 +76,10 @@ namespace CMDToolKit.Providers.Network
         public void Process()
         {
             if (!Enum.TryParse(_splitedInput[1].ToUpper(), true, out NetworkEnum command))
+            {
                 Printer.PrintWarning("Command Not Found!");
+                return;
+            }
 
             string commandInput = _splitedInput.Length > 2 ? _splitedInput[2] : String.Empty;
 
