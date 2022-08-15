@@ -46,5 +46,25 @@ namespace CMDToolKit.Utilities.Network
 
             return new ToolResult { Message = "No network adapters with an IPv4 address in the system!", IsSuccess = false };
         }
+
+        public static ToolResult Adapters()
+        {
+            var existAdapters = NetworkInterface.GetAllNetworkInterfaces();
+
+            int maxNameLength = existAdapters.Max(x => x.Name.Length);
+            int maxSpeedLength = existAdapters.Max(x => x.Speed.ToString().Length);
+            int maxDescriptionLength = existAdapters.Max(x => x.Description.Length);
+            string result = String.Join("\n", existAdapters.Select(x =>
+            $"Name : {x.Name.PadRight(maxNameLength, ' ')} | " +
+            $"OperationalStatus : {x.OperationalStatus} | " +
+            $"IsReceiveOnly : {x.IsReceiveOnly} | " +
+            $"Speed : {x.Speed.ToString().PadRight(maxSpeedLength, ' ')} B | " +
+            $"Description : {x.Description.PadRight(maxDescriptionLength, ' ')}"));
+            return new ToolResult
+            {
+                Message = result,
+                IsSuccess = true
+            };
+        }
     }
 }

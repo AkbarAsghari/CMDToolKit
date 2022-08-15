@@ -13,6 +13,7 @@ namespace CMDToolKit.Enums.Network
         Port = 3,
         ReverseLookUp = 4,
         Mac = 5,
-        LocalIP
+        LocalIP = 6 ,
+        Adapters = 7,
     }
 }

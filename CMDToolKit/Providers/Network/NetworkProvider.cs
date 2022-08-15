@@ -70,6 +70,9 @@ namespace CMDToolKit.Providers.Network
                 case NetworkEnum.LocalIP:
                     Printer.PrintInfo("command -> network localip");
                     break;
+                case NetworkEnum.Adapters:
+                    Printer.PrintInfo("command -> network adapters");
+                    break;
                 default:
                     Printer.PrintError($"Help Not Found For {command}");
                     break;
@@ -105,6 +108,9 @@ namespace CMDToolKit.Providers.Network
                     break;
                 case NetworkEnum.LocalIP:
                     Invoker.InvokeTools(() => LocalNetwork.GetLocalIPAddress());
+                    break;
+                case NetworkEnum.Adapters:
+                    Invoker.InvokeTools(() => LocalNetwork.Adapters());
                     break;
             }
         }
