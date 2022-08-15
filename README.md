@@ -2,6 +2,8 @@
 
 All Available Commands
 
+```
+
 ───| Clear
 
 ───| Copy
@@ -35,3 +37,5 @@ All Available Commands
    |----- SHA256
    |----- SHA384
    |----- SHA512
+
+```
