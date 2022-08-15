@@ -34,7 +34,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
         {
             if (_splitedInput.Where(x => x != null).ToArray().Length == 2)
             {
-                Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (EncodersDecodersEnums[])Enum.GetValues(typeof(EncodersDecodersEnums))));
+                Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (EncodersDecodersEnum[])Enum.GetValues(typeof(EncodersDecodersEnum))));
                 Printer.PrintInfo("Example : encode base64 Hello World");
                 return;
             }
@@ -45,7 +45,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
                 return;
             }
 
-            if (!Enum.TryParse(_splitedInput[2]!.ToUpper(), true, out EncodersDecodersEnums command))
+            if (!Enum.TryParse(_splitedInput[2]!.ToUpper(), true, out EncodersDecodersEnum command))
             {
                 Printer.PrintWarning("Command Not Found!");
                 return;
@@ -53,21 +53,29 @@ namespace CMDToolKit.Providers.EncodersDecoders
 
             switch (masterCommand, command)
             {
-                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base64):
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.Base64):
                     Printer.PrintInfo("Command -> encode base64 [plainText]");
                     Printer.PrintInfo("Example : encode base64 Hello World");
                     break;
-                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base64):
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.Base64):
                     Printer.PrintInfo("Command -> decode base64 [base64EncodedData]");
                     Printer.PrintInfo("Example : encode base64 SGVsbG9Xb3JsZA==");
                     break;
-                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base32):
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.Base32):
                     Printer.PrintInfo("Command -> encode base32 [plainText]");
                     Printer.PrintInfo("Example : encode base32 Hello World");
                     break;
-                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base32):
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.Base32):
                     Printer.PrintInfo("Command -> decode base32 [base32EncodedData]");
                     Printer.PrintInfo("Example : encode base32 JBSWY3DPEBLW64TMMQ======");
+                    break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.HTML):
+                    Printer.PrintInfo("Command -> encode html [html]");
+                    Printer.PrintInfo("Example : encode html <button> Test </button>");
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.HTML):
+                    Printer.PrintInfo("Command -> decode html [encoded HTML]");
+                    Printer.PrintInfo("Example : encode html &lt;button&gt; Test &lt;/button&gt;");
                     break;
                 default:
                     Printer.PrintError($"Help Not Found For {masterCommand} {command}");
@@ -89,7 +97,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
                 return;
             }
 
-            if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out EncodersDecodersEnums command))
+            if (!Enum.TryParse(_splitedInput[1]!.ToUpper(), true, out EncodersDecodersEnum command))
             {
                 Printer.PrintWarning("Command Not Found!");
                 return;
@@ -99,17 +107,23 @@ namespace CMDToolKit.Providers.EncodersDecoders
 
             switch (masterCommand, command)
             {
-                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base64):
-                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Encode(commandInput));
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.Base64):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.Base64Encode(commandInput));
                     break;
-                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base64):
-                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Decode(commandInput));
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.Base64):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.Base64Decode(commandInput));
                     break;
-                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base32):
-                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base32Encode(commandInput));
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.Base32):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.Base32Encode(commandInput));
                     break;
-                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base32):
-                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base32Decode(commandInput));
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.Base32):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.Base32Decode(commandInput));
+                    break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.HTML):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.HTMLEncode(commandInput));
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.HTML):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.HTMLDecode(commandInput));
                     break;
             }
         }

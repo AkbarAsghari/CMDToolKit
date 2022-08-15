@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMDToolKit.Utilities.EncodersDecoders
 {
-    internal class Base64TextEncoderDecoder
+    internal class EncoderDecoderTools
     {
         #region Base64
         public static ToolResult Base64Encode(string plainText)
@@ -191,6 +191,21 @@ namespace CMDToolKit.Utilities.EncodersDecoders
             throw new ArgumentException("Byte is not a value Base32 value.", "b");
         }
         #endregion
+
+        #region HTML
+
+        public static ToolResult HTMLEncode(string input)
+        {
+            return new ToolResult { Message = System.Web.HttpUtility.HtmlEncode(input), IsSuccess = true };
+        }
+
+        public static ToolResult HTMLDecode(string input)
+        {
+            return new ToolResult { Message = System.Web.HttpUtility.HtmlDecode(input), IsSuccess = true };
+        }
+
+        #endregion
+
 
     }
 }

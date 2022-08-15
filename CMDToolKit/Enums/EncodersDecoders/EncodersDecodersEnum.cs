@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CMDToolKit.Enums.EncodersDecoders
 {
-    internal enum EncodersDecodersEnums
+    internal enum EncodersDecodersEnum
     {
         Base64 = 1,
         Base32 = 2,
+        HTML = 3,
     }
 }
