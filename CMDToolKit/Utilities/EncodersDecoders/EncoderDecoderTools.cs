@@ -206,6 +206,18 @@ namespace CMDToolKit.Utilities.EncodersDecoders
 
         #endregion
 
+        #region URL
 
+        public static ToolResult URLEncode(string input)
+        {
+            return new ToolResult { Message = System.Web.HttpUtility.UrlEncode(input), IsSuccess = true };
+        }
+
+        public static ToolResult URLDecode(string input)
+        {
+            return new ToolResult { Message = System.Web.HttpUtility.encode(input), IsSuccess = true };
+        }
+
+        #endregion
     }
 }
