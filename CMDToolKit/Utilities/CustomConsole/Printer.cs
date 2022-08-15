@@ -45,7 +45,7 @@ namespace CMDToolKit.Utilities.CustomConsole
         }
         public static void PrintSuccess(string text)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(text);
             Reset();
         }
