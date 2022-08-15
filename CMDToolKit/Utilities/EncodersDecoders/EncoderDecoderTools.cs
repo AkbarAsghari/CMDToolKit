@@ -215,7 +215,7 @@ namespace CMDToolKit.Utilities.EncodersDecoders
 
         public static ToolResult URLDecode(string input)
         {
-            return new ToolResult { Message = System.Web.HttpUtility.encode(input), IsSuccess = true };
+            return new ToolResult { Message = System.Web.HttpUtility.UrlDecode(input), IsSuccess = true };
         }
 
         #endregion

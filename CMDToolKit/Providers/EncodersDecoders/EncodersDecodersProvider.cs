@@ -35,7 +35,7 @@ namespace CMDToolKit.Providers.EncodersDecoders
             if (_splitedInput.Where(x => x != null).ToArray().Length == 2)
             {
                 Printer.PrintInfo("Available Commands -> " + String.Join(" , ", (EncodersDecodersEnum[])Enum.GetValues(typeof(EncodersDecodersEnum))));
-                Printer.PrintInfo("Example : encode base64 Hello World");
+                Printer.PrintInfo("Example : encode/decode base64 Hello World");
                 return;
             }
 
@@ -76,6 +76,14 @@ namespace CMDToolKit.Providers.EncodersDecoders
                 case (MasterCommandsEnum.Decode, EncodersDecodersEnum.HTML):
                     Printer.PrintInfo("Command -> decode html [encoded HTML]");
                     Printer.PrintInfo("Example : encode html &lt;button&gt; Test &lt;/button&gt;");
+                    break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.URL):
+                    Printer.PrintInfo("Command -> encode url [URL]");
+                    Printer.PrintInfo("Example : encode url https://www.twitter.com");
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.URL):
+                    Printer.PrintInfo("Command -> decode url [encoded URL]");
+                    Printer.PrintInfo("Example : encode url https%3A%2F%2Fwww.twitter.com");
                     break;
                 default:
                     Printer.PrintError($"Help Not Found For {masterCommand} {command}");
@@ -124,6 +132,12 @@ namespace CMDToolKit.Providers.EncodersDecoders
                     break;
                 case (MasterCommandsEnum.Decode, EncodersDecodersEnum.HTML):
                     Invoker.InvokeTools(() => EncoderDecoderTools.HTMLDecode(commandInput));
+                    break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnum.URL):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.URLEncode(commandInput));
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnum.URL):
+                    Invoker.InvokeTools(() => EncoderDecoderTools.URLDecode(commandInput));
                     break;
             }
         }

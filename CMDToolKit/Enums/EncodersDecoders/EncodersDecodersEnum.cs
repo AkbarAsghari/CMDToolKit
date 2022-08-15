@@ -11,5 +11,6 @@ namespace CMDToolKit.Enums.EncodersDecoders
         Base64 = 1,
         Base32 = 2,
         HTML = 3,
+        URL = 4,
     }
 }
