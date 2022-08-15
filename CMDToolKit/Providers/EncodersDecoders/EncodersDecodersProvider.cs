@@ -97,6 +97,12 @@ namespace CMDToolKit.Providers.EncodersDecoders
                 case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base64):
                     Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base64Decode(commandInput));
                     break;
+                case (MasterCommandsEnum.Encode, EncodersDecodersEnums.Base32):
+                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base32Encode(commandInput));
+                    break;
+                case (MasterCommandsEnum.Decode, EncodersDecodersEnums.Base32):
+                    Invoker.InvokeTools(() => Base64TextEncoderDecoder.Base32Decode(commandInput));
+                    break;
             }
         }
     }
