@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Interfaces
+namespace Base.Enums.Hash
 {
-    internal interface IProvider
+    public enum HashEnum
     {
-        void Process();
-        void Help();
+        MD5,
+        SHA1,
+        SHA256,
+        SHA384,
+        SHA512,
     }
 }

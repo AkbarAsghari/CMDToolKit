@@ -1,14 +1,14 @@
-﻿using CMDToolKit.DTOs;
-using CMDToolKit.Utilities.CustomConsole;
+﻿using Tools.Utilities.CustomConsole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Base.DTOs;
 
-namespace CMDToolKit.Utilities.Invoker
+namespace Tools.Utilities.Invoker
 {
-    internal class Invoker
+    public class Invoker
     {
         public static void InvokeTools(Func<ToolResult> func)
         {

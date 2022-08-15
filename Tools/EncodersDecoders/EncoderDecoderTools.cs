@@ -1,13 +1,13 @@
-﻿using CMDToolKit.DTOs;
+﻿using Base.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Utilities.EncodersDecoders
+namespace Tools.Utilities.EncodersDecoders
 {
-    internal class EncoderDecoderTools
+    public class EncoderDecoderTools
     {
         #region Base64
         public static ToolResult Base64Encode(string plainText)

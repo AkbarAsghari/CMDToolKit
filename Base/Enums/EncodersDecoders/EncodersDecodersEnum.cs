@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Enums.EncodersDecoders
+namespace Base.Enums.EncodersDecoders
 {
-    internal enum EncodersDecodersEnum
+    public enum EncodersDecodersEnum
     {
         Base64 = 1,
         Base32 = 2,

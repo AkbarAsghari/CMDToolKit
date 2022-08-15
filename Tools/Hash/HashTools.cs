@@ -1,4 +1,4 @@
-﻿using CMDToolKit.DTOs;
+﻿using Base.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CTK.Utilities.Hash
+namespace Tools.Utilities.Hash
 {
-    internal class HashTools
+    public class HashTools
     {
         public static ToolResult ComputeSHA1Hash(string input)
         {

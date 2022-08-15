@@ -1,10 +1,10 @@
-﻿using CMDToolKit.Utilities.CustomConsole;
+﻿using Tools.Utilities.CustomConsole;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace CMDToolKit.Utilities.ClipboardTool
+namespace Tools.Utilities.ClipboardTool
 {
-    internal class ClipboardTool
+    public class ClipboardTool
     {
         static string _result;
 

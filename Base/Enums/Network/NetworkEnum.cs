@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Enums.Network
+namespace Base.Enums.Network
 {
-    internal enum NetworkEnum
+    public enum NetworkEnum
     {
         DNSLookUp = 1,
         Ping = 2,

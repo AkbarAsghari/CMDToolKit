@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.DTOs
+namespace Base.DTOs
 {
-    internal class ToolResult
+    public class ToolResult
     {
         public bool? IsSuccess { get; set; }
         public string Message { get; set; }

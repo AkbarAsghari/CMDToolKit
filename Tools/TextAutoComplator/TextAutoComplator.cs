@@ -1,9 +1,9 @@
 ﻿using AutoCompleteUtils;
-using CMDToolKit.Enums;
-using CMDToolKit.Enums.EncodersDecoders;
-using CMDToolKit.Enums.Network;
+using Base.Enums;
+using Base.Enums.EncodersDecoders;
+using Base.Enums.Hash;
+using Base.Enums.Network;
 using ConsoleUtils;
-using CTK.Enums.Hash;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CTK.Utilities.TextAutoComplator
+namespace Tools.Utilities.TextAutoComplator
 {
-    internal class TextAutoComplator
+    public class TextAutoComplator
     {
         public static string GetValue()
         {

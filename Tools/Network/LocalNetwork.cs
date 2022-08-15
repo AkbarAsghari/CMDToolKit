@@ -1,4 +1,4 @@
-﻿using CMDToolKit.DTOs;
+﻿using Base.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Utilities.Network
+namespace Tools.Utilities.Network
 {
-    internal class LocalNetwork
+    public class LocalNetwork
     {
         public static ToolResult GetMac()
         {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMDToolKit.Utilities.CustomConsole
+namespace Tools.Utilities.CustomConsole
 {
-    internal static class Printer
+    public static class Printer
     {
         public static void Reset()
         {
@@ -18,7 +18,7 @@ namespace CMDToolKit.Utilities.CustomConsole
 
         public static void GoNextLine() => Console.WriteLine();
 
-        internal static void PrintInfo(string text)
+        public static void PrintInfo(string text)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(text);

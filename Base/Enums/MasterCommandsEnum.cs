@@ -1,6 +1,6 @@
-﻿namespace CMDToolKit.Enums
+﻿namespace Base.Enums
 {
-    internal enum MasterCommandsEnum
+    public enum MasterCommandsEnum
     {
         Clear = 0,
         Copy = 1,

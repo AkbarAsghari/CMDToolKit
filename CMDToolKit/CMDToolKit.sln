@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCompleteUtils", "..\Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUtils", "..\ConsoleUtils\ConsoleUtils.csproj", "{CA7007AE-90F5-4351-92E5-BAA345812E37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "..\Tools\Tools.csproj", "{8DC28262-A535-4D9A-AC35-FE591C3D4F09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "..\Base\Base.csproj", "{0D35CB7E-0F52-4DDA-9C93-A90FE7ED890B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{CA7007AE-90F5-4351-92E5-BAA345812E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA7007AE-90F5-4351-92E5-BAA345812E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA7007AE-90F5-4351-92E5-BAA345812E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC28262-A535-4D9A-AC35-FE591C3D4F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC28262-A535-4D9A-AC35-FE591C3D4F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC28262-A535-4D9A-AC35-FE591C3D4F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC28262-A535-4D9A-AC35-FE591C3D4F09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D35CB7E-0F52-4DDA-9C93-A90FE7ED890B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D35CB7E-0F52-4DDA-9C93-A90FE7ED890B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D35CB7E-0F52-4DDA-9C93-A90FE7ED890B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D35CB7E-0F52-4DDA-9C93-A90FE7ED890B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
