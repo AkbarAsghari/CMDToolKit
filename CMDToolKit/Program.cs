@@ -9,8 +9,7 @@ using CMDToolKit.Utilities.CustomConsole;
 using CMDToolKit.Utilities.EncodersDecoders;
 using CMDToolKit.Utilities.Invoker;
 using CMDToolKit.Utilities.Network;
-
-
+using CTK.Enums.Hash;
 
 int _ThreadSleep = 1000;
 
@@ -70,10 +69,40 @@ void ProcessInput(string input)
             case MasterCommandsEnum.Help:
                 if (splitedInput.Length == 1)
                 {
-                    Printer.PrintInfo("Available Commands -> " +
-                        String.Join(" , ", ((MasterCommandsEnum[])Enum.GetValues(typeof(MasterCommandsEnum)))
-                        .Except(new MasterCommandsEnum[] { MasterCommandsEnum.Help, MasterCommandsEnum.Clear })));
-                    Printer.PrintInfo("Example : Network");
+                    Printer.PrintInfo("All Available Commands");
+
+                    foreach (var master in ((MasterCommandsEnum[])Enum.GetValues(typeof(MasterCommandsEnum))))
+                    {
+                        Printer.PrintInfo($"\n───| {master} ");
+                        switch (master)
+                        {
+                            case MasterCommandsEnum.Clear:
+                            case MasterCommandsEnum.Copy:
+                            case MasterCommandsEnum.Help:
+                                break;
+                            case MasterCommandsEnum.Network:
+                                foreach (var child in ((NetworkEnum[])Enum.GetValues(typeof(NetworkEnum))))
+                                {
+                                    Printer.PrintInfo($"   |-{String.Empty.PadRight(master.ToString().Length, '-')} {child}");
+                                }
+                                break;
+                            case MasterCommandsEnum.Encode:
+                            case MasterCommandsEnum.Decode:
+                                foreach (var child in ((EncodersDecodersEnum[])Enum.GetValues(typeof(EncodersDecodersEnum))))
+                                {
+                                    Printer.PrintInfo($"   |-{String.Empty.PadRight(master.ToString().Length, '-')} {child}");
+                                }
+                                break;
+                            case MasterCommandsEnum.Hash:
+                                foreach (var child in ((HashEnum[])Enum.GetValues(typeof(HashEnum))))
+                                {
+                                    Printer.PrintInfo($"   |-{String.Empty.PadRight(master.ToString().Length, '-')} {child}");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     break;
                 }
                 if (!Enum.TryParse(splitedInput[1].ToUpper(), true, out MasterCommandsEnum masterCommandForHelp))
@@ -95,6 +124,8 @@ void ProcessInput(string input)
                         break;
                 };
                 break;
+
+
             case MasterCommandsEnum.Network:
                 new NetworkProvider(input).Process();
                 break;
