@@ -4,9 +4,9 @@ using Tools.Utilities.CustomConsole;
 using Tools.Utilities.Invoker;
 using Tools.Utilities.Network;
 
-namespace CMDToolKit.Providers.Network
+namespace Tools.Providers.Network
 {
-    internal class NetworkProvider : IProvider
+    public class NetworkProvider : IProvider
     {
         private readonly string[] _splitedInput;
         private readonly DNSTool _DNSTool;

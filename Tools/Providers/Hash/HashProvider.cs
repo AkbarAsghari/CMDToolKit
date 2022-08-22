@@ -4,9 +4,9 @@ using Tools.Utilities.CustomConsole;
 using Tools.Utilities.Hash;
 using Tools.Utilities.Invoker;
 
-namespace CMDToolKit.Providers.Hash
+namespace Tools.Providers.Hash
 {
-    internal class HashProvider : IProvider
+    public class HashProvider : IProvider
     {
         private readonly string?[] _splitedInput;
 

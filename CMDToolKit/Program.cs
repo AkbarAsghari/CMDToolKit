@@ -2,9 +2,9 @@
 using Base.Enums.EncodersDecoders;
 using Base.Enums.Hash;
 using Base.Enums.Network;
-using CMDToolKit.Providers.EncodersDecoders;
-using CMDToolKit.Providers.Hash;
-using CMDToolKit.Providers.Network;
+using Tools.Providers.EncodersDecoders;
+using Tools.Providers.Hash;
+using Tools.Providers.Network;
 using Tools.Utilities.ClipboardTool;
 using Tools.Utilities.CustomConsole;
 using Tools.Utilities.TextAutoComplator;

@@ -5,9 +5,9 @@ using Tools.Utilities.CustomConsole;
 using Tools.Utilities.EncodersDecoders;
 using Tools.Utilities.Invoker;
 
-namespace CMDToolKit.Providers.EncodersDecoders
+namespace Tools.Providers.EncodersDecoders
 {
-    internal class EncodersDecodersProvider : IProvider
+    public class EncodersDecodersProvider : IProvider
     {
         private readonly string?[] _splitedInput;
 
