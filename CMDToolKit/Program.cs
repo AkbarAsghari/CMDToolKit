@@ -1,8 +1,10 @@
 ﻿using Base.Enums;
 using Base.Enums.EncodersDecoders;
+using Base.Enums.Generators;
 using Base.Enums.Hash;
 using Base.Enums.Network;
 using Tools.Providers.EncodersDecoders;
+using Tools.Providers.Generators;
 using Tools.Providers.Hash;
 using Tools.Providers.Network;
 using Tools.Utilities.ClipboardTool;
@@ -99,6 +101,12 @@ void ProcessInput(string input)
                                     Printer.PrintInfo($"   |-{String.Empty.PadRight(master.ToString().Length, '-')} {child}");
                                 }
                                 break;
+                            case MasterCommandsEnum.Generate:
+                                foreach (var child in ((GeneratorsEnum[])Enum.GetValues(typeof(GeneratorsEnum))))
+                                {
+                                    Printer.PrintInfo($"   |-{String.Empty.PadRight(master.ToString().Length, '-')} {child}");
+                                }
+                                break;
                             default:
                                 break;
                         }
@@ -122,6 +130,9 @@ void ProcessInput(string input)
                     case MasterCommandsEnum.Hash:
                         new HashProvider(input).Help();
                         break;
+                    case MasterCommandsEnum.Generate:
+                        new GeneratorsProvider(input).Help();
+                        break;
                 };
                 break;
 
@@ -135,6 +146,9 @@ void ProcessInput(string input)
                 break;
             case MasterCommandsEnum.Hash:
                 new HashProvider(input).Process();
+                break;
+            case MasterCommandsEnum.Generate:
+                new GeneratorsProvider(input).Process();
                 break;
         }
     }

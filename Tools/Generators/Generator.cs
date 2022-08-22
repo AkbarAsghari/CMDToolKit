@@ -9,7 +9,7 @@ namespace Tools.Generators
 {
     internal class Generator
     {
-        public ToolResult GuidGenerator()
+        public static ToolResult GuidGenerator()
         {
             return new ToolResult { Message = Guid.NewGuid().ToString(), IsSuccess = true };
         }

@@ -1,6 +1,7 @@
 ﻿using AutoCompleteUtils;
 using Base.Enums;
 using Base.Enums.EncodersDecoders;
+using Base.Enums.Generators;
 using Base.Enums.Hash;
 using Base.Enums.Network;
 using ConsoleUtils;
@@ -48,6 +49,14 @@ namespace Tools.Utilities.TextAutoComplator
                 else if (masterCommands == MasterCommandsEnum.Hash)
                 {
                     foreach (var child in ((HashEnum[])Enum.GetValues(typeof(HashEnum))))
+                    {
+                        data.Add($"{masterCommands} {child}");
+                        data.Add($"Help {masterCommands} {child}");
+                    }
+                }
+                else if (masterCommands == MasterCommandsEnum.Generate)
+                {
+                    foreach (var child in ((GeneratorsEnum[])Enum.GetValues(typeof(GeneratorsEnum))))
                     {
                         data.Add($"{masterCommands} {child}");
                         data.Add($"Help {masterCommands} {child}");

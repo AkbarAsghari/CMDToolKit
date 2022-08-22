@@ -9,5 +9,6 @@
         Encode = 5,
         Decode = 6,
         Hash = 7,
+        Generate
     }
 }
