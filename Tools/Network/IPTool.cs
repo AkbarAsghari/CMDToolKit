@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Utilities.Network
 {
-    public class IPTool
+    internal class IPTool
     {
         public ToolResult HostOrIPHavePing(string hostOrIPAddress)
         {

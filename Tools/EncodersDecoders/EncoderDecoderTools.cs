@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Utilities.EncodersDecoders
 {
-    public class EncoderDecoderTools
+    internal class EncoderDecoderTools
     {
         #region Base64
         public static ToolResult Base64Encode(string plainText)

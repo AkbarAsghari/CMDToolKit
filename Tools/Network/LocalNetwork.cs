@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Utilities.Network
 {
-    public class LocalNetwork
+    internal class LocalNetwork
     {
         public static ToolResult GetMac()
         {

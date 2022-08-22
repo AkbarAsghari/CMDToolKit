@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Generators
 {
-    public class Generator
+    internal class Generator
     {
         public ToolResult GuidGenerator()
         {

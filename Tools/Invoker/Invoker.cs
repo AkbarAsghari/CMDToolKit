@@ -8,7 +8,7 @@ using Base.DTOs;
 
 namespace Tools.Utilities.Invoker
 {
-    public class Invoker
+    internal class Invoker
     {
         public static void InvokeTools(Func<ToolResult> func)
         {

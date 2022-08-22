@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Utilities.Network
 {
-    public class DNSTool
+    internal class DNSTool
     {
         public ToolResult DNSLookup(string hostOrIPAddress)
         {

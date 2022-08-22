@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tools.Utilities.Hash
 {
-    public class HashTools
+    internal class HashTools
     {
         public static ToolResult ComputeSHA1Hash(string input)
         {
